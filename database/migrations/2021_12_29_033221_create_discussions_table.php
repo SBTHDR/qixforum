@@ -18,7 +18,7 @@ class CreateDiscussionsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('channel_id');
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('content');
             $table->timestamps();
         });
