@@ -80,6 +80,7 @@
             <main class="container py-4">
                 <div class="row">
                     <div class="col-md-4">
+                        <li class="list-group-item bg-dark text-white mb-2 rounded">Available Discussion Channels</li>
                         <ul class="list-group">
                             @foreach ($channels as $channel)
                                 <li class="list-group-item">{{ $channel->name }}</li>

@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 <div class="card">
-    <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <b>{{ __('Dashboard') }}</b>
+        <a href="{{ route('discussions.create') }}" class="btn btn-primary">Create Discussion</a>
+    </div>
 
     <div class="card-body">
         @if (session('status'))
