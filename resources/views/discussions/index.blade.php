@@ -10,9 +10,12 @@
 @foreach ($discussions as $discussion)
     <div class="card mb-2">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <span>
-                <h5><strong>{{ $discussion->title }}</strong></h5>
-                <span>by {{ $discussion->user->name }} {{ $discussion->created_at->diffForHumans() }}</span>
+            <span class="d-flex gap-2">
+                <img class="img-thumbnail rounded-circle" width="50px" src="{{ Gravatar::src($discussion->user->email) }}">
+                <span>
+                    <h5><strong>{{ $discussion->title }}</strong></h5>
+                    <span>by {{ $discussion->user->name }} {{ $discussion->created_at->diffForHumans() }}</span>
+                </span>
             </span>
             <a href="{{ route('discussions.show', $discussion->slug) }}" class="btn btn-primary">View</a>
         </div>
