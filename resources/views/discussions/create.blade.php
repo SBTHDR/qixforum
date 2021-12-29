@@ -45,7 +45,8 @@
               @enderror
             </div>
 
-            <div class="input-group">
+            <div class="form-group d-flex gap-2">
+                <a href="{{ route('home') }}" class="btn btn-secondary">Cancle</a>
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
           </form>
