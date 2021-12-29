@@ -21,18 +21,18 @@
 <div class="card p-2 mb-2">
     @auth
         <span class="mb-2">
-            <strong>Make Replay</strong>
+            <strong>Make Reply</strong>
         </span>
-        <form action="" method="POST">
+        <form action="{{ route('replies.store', $discussion->slug) }}" method="POST">
             @csrf
-            <input type="hidden" id="replay" name="replay">
-            <trix-editor input="replay"></trix-editor>
+            <input type="hidden" id="reply" name="reply">
+            <trix-editor input="reply"></trix-editor>
 
-            <button type="submit" class="btn btn-sm btn-secondary mt-2">replay</button>
+            <button type="submit" class="btn btn-sm btn-secondary mt-2">reply</button>
         </form>
     @else
         <span class="mb-2">
-            <strong>Sign in to make a replay</strong>
+            <strong>Sign in to make a reply</strong>
         </span>
     @endauth
 </div>
@@ -47,7 +47,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolore! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus consequuntur in possimus laborum aliquam quam quasi sunt error aperiam rem?</p>
         <form action="" method="" class="d-flex justify-content-end">
             @csrf
-            <button type="submit" class="btn btn-sm btn-secondary">replay</button>
+            <button type="submit" class="btn btn-sm btn-secondary">reply</button>
         </form>
     </div>
 </div>
