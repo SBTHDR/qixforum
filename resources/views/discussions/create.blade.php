@@ -12,20 +12,38 @@
               <input type="text" class="form-control" name="title" id="title" placeholder="Give a discussion title here...">
             </div>
 
-            <div class="input-group mb-3">
-                <button class="btn btn-outline-secondary" type="button">Channel Name</button>
-                <select class="form-select" name="channel_id">
-                  <option selected>Choose a topic...</option>
-                  @foreach ($channels as $channel)
-                    <option value="{{ $channel->id }}">{{ $channel->name }}</option>
-                  @endforeach
-                </select>
-              </div>
+            <div class="mb-2">
+              @error('title')
+                <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
 
-              <div class="form-group mb-3">
-                <input id="content" type="hidden" name="content">
-                <trix-editor input="content"></trix-editor>
-              </div>
+            <div class="input-group mb-3">
+              <button class="btn btn-outline-secondary" type="button">Channel Name</button>
+              <select class="form-select" name="channel_id">
+                <option selected>Choose a topic...</option>
+                @foreach ($channels as $channel)
+                  <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="mb-2">
+              @error('channel_id')
+                <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
+
+            <div class="form-group mb-3">
+              <input id="content" type="hidden" name="content">
+              <trix-editor input="content"></trix-editor>
+            </div>
+
+            <div class="mb-2">
+              @error('content')
+                <span class="text-danger">{{ $message }}</span>
+              @enderror
+            </div>
 
             <div class="input-group">
                 <button type="submit" class="btn btn-primary">Create</button>

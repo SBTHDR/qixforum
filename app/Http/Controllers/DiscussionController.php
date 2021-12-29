@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateDiscussionRequest;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
 
 class DiscussionController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')->only(['create', 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +38,7 @@ class DiscussionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateDiscussionRequest $request)
     {
         dd($request->all());
     }
