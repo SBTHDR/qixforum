@@ -10,8 +10,11 @@
 @foreach ($discussions as $discussion)
     <div class="card mb-2">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5><strong>{{ $discussion->title }}</strong></h5>
-            <a href="{{ route('discussions.create') }}" class="btn btn-primary">Mark</a>
+            <span>
+                <h5><strong>{{ $discussion->title }}</strong></h5>
+                <span>by {{ $discussion->user->name }} {{ $discussion->created_at->diffForHumans() }}</span>
+            </span>
+            <a href="{{ route('discussions.show', $discussion->slug) }}" class="btn btn-primary">View</a>
         </div>
 
         <div class="card-body">
