@@ -2,6 +2,13 @@
 
 @section('content')
 
+@if (Session::has('success'))
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Congratulations!</strong> {{ Session::get('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <div class="card mb-2">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="d-flex gap-2">
@@ -28,7 +35,15 @@
             <input type="hidden" id="reply" name="reply">
             <trix-editor input="reply"></trix-editor>
 
-            <button type="submit" class="btn btn-sm btn-secondary mt-2">reply</button>
+            <div class="mb-2">
+                @error('reply')
+                  <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Reply</button>
+            </div>
         </form>
     @else
         <span class="mb-2">
@@ -37,20 +52,25 @@
     @endauth
 </div>
 
-<div class="card p-2">
-    <div>
-        <strong>Comments</strong>
+@foreach ($discussion->replies as $reply)
+    <div class="card p-2">
+        <div>
+            <strong>Comments</strong>
+        </div>
+        <hr>
+        <div class="mb-2 border border-secondary p-2 rounded">
+            <p>{!! $reply->reply !!}</p>
+            <hr>
+            <span class="d-flex gap-2 align-items-center">
+                <img class="img-thumbnail rounded-circle" width="30px" src="{{ Gravatar::src($discussion->user->email) }}">
+                <span class="text-secondary">
+                    <span>by {{ $reply->user->name }}</span>
+                    <span>{{ $discussion->created_at->diffForHumans() }}</span>
+                </span>
+            </span>
+        </div>
     </div>
-    <hr>
-    <div class="mb-2 border border-secondary p-2 rounded">
-        <span>Mark Tuntuni</span>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolore! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus consequuntur in possimus laborum aliquam quam quasi sunt error aperiam rem?</p>
-        <form action="" method="" class="d-flex justify-content-end">
-            @csrf
-            <button type="submit" class="btn btn-sm btn-secondary">reply</button>
-        </form>
-    </div>
-</div>
+@endforeach
 
 @endsection
 

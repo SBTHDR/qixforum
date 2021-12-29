@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateReplyRequest;
+use App\Models\Discussion;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 
@@ -33,9 +35,14 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateReplyRequest $request, Discussion $discussion)
     {
-        //
+        auth()->user()->replies()->create([
+            'reply' => $request->reply,
+            'discussion_id' => $discussion->id
+        ]);
+
+        return redirect()->back()->with('success', 'Comment created successfully');
     }
 
     /**
