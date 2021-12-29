@@ -53,7 +53,7 @@
 </div>
 
 @foreach ($discussion->replies as $reply)
-    <div class="card p-2">
+    <div class="card p-2 mb-2">
         <div>
             <strong>Comments</strong>
         </div>
@@ -62,10 +62,10 @@
             <p>{!! $reply->reply !!}</p>
             <hr>
             <span class="d-flex gap-2 align-items-center">
-                <img class="img-thumbnail rounded-circle" width="30px" src="{{ Gravatar::src($discussion->user->email) }}">
+                <img class="img-thumbnail rounded-circle" width="30px" src="{{ Gravatar::src($reply->user->email) }}">
                 <span class="text-secondary">
                     <span>by {{ $reply->user->name }}</span>
-                    <span>{{ $discussion->created_at->diffForHumans() }}</span>
+                    <span>{{ $reply->created_at->diffForHumans() }}</span>
                 </span>
             </span>
         </div>

@@ -16,8 +16,8 @@
             </div>
         @endif
 
-        @if ($discussions->count() > 0)
-            <span class="border border-primary border-2 rounded p-2"><strong>Your Discussion: {{ $discussions->count() }}</strong></span>
+        @if (auth()->user()->discussions->count() > 0)
+            <span class="border border-primary border-2 rounded p-2"><strong>Your Discussion: {{ auth()->user()->discussions->count() }}</strong></span>
         @else
             <h5>You have not posted any discussion yet!</h5>
         @endif

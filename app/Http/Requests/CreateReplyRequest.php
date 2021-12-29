@@ -24,7 +24,7 @@ class CreateReplyRequest extends FormRequest
     public function rules()
     {
         return [
-            'reply' => ['required', 'max:255']
+            'reply' => ['required']
         ];
     }
 }
