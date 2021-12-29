@@ -16,7 +16,11 @@
             </div>
         @endif
 
-        {{ __('You are logged in!') }}
+        @if ($discussions->count() > 0)
+            <span class="border border-primary border-2 rounded p-2"><strong>Your Discussion: {{ $discussions->count() }}</strong></span>
+        @else
+            <h5>You have not posted any discussion yet!</h5>
+        @endif
     </div>
 </div>
 @endsection
