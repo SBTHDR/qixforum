@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateReplyRequest;
 use App\Models\Discussion;
 use App\Models\Reply;
+use App\Notifications\NewReply;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -41,6 +42,8 @@ class ReplyController extends Controller
             'reply' => $request->reply,
             'discussion_id' => $discussion->id
         ]);
+
+        $discussion->user->notify(new NewReply($discussion));
 
         return redirect()->back()->with('success', 'Comment created successfully');
     }
