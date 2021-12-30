@@ -42,8 +42,11 @@ class ReplyController extends Controller
             'reply' => $request->reply,
             'discussion_id' => $discussion->id
         ]);
+        
+        if ($discussion->user->id !== auth()->user()->id) {
+            $discussion->user->notify(new NewReply($discussion));
+        } 
 
-        $discussion->user->notify(new NewReply($discussion));
 
         return redirect()->back()->with('success', 'Comment created successfully');
     }
