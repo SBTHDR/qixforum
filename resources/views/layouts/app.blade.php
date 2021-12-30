@@ -84,7 +84,7 @@
             </div>
         </nav>
 
-        @auth
+        @if (!in_array(request()->path(), ['login', 'register', 'password/email', 'password/reset']))
             <main class="container py-4">
                 <div class="row">
                     <div class="col-md-4">
@@ -100,11 +100,12 @@
                     </div>
                 </div>
             </main>
-        @else
+        @else   
             <main class="py-4">
                 @yield('content')
             </main>
-        @endauth
+        @endif
+        
 
     </div>
 
